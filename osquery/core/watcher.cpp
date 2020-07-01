@@ -8,6 +8,7 @@
 
 #include <chrono>
 #include <cstring>
+#include <string>
 
 #include <math.h>
 #include <signal.h>
@@ -538,7 +539,7 @@ void WatcherRunner::createWorker() {
   }
 
   // Get the path of the current process.
-  auto qd = "/usr/bin/osqueryd";
+  string qd = "/usr/bin/osqueryd";
   // auto qd = SQL::selectFrom({"path"},
   //                           "processes",
   //                           "pid",
@@ -559,11 +560,12 @@ void WatcherRunner::createWorker() {
 
   // Get the complete path of the osquery process binary.
   boost::system::error_code ec;
-  auto exec_path = fs::system_complete(fs::path(qd[0]["path"]), ec);
-  if (!pathExists(exec_path).ok()) {
-    LOG(WARNING) << "osqueryd doesn't exist in: " << exec_path.string();
-    return;
-  }
+  string exec_path = "/usr/bin/osqueryd";
+  // auto exec_path = fs::system_complete(fs::path(qd[0]["path"]), ec);
+  // // if (!pathExists(exec_path).ok()) {
+  // //   LOG(WARNING) << "osqueryd doesn't exist in: " << exec_path.string();
+  // //   return;
+  // // }
   if (!safePermissions(
           exec_path.parent_path().string(), exec_path.string(), true)) {
     // osqueryd binary has become unsafe.
