@@ -538,12 +538,13 @@ void WatcherRunner::createWorker() {
   }
 
   //TODO: Gordon changed this
-  // Get the path of the current process.
-  auto qd = "/host/proc"; // SQL::selectFrom({"path"},
+  // // Get the path of the current process.
+  // auto qd = SQL::selectFrom({"path"},
   //                           "processes",
   //                           "pid",
   //                           EQUALS,
   //                           INTEGER(PlatformProcess::getCurrentPid()));
+
   // // if (qd.size() != 1 || qd[0].count("path") == 0 || qd[0]["path"].size() == 0) {
   //   Initializer::requestShutdown(
   //       EXIT_FAILURE,
