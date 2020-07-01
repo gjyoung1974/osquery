@@ -25,10 +25,10 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.14.6/cmake-3.14.6
 RUN tar xvf cmake-3.14.6-Linux-x86_64.tar.gz -C /usr/local --strip 1
 
 # Clone the osquery source
-# RUN git clone https://github.com/osquery/osquery
+RUN git clone https://github.com/gjyoung1974/osquery.git
 # Copy osquery source from local repo
-RUN mkdir -p /osquery
-COPY .  /osquery
+# RUN mkdir -p /osquery
+# COPY .  /osquery
 
 # TODO: patch the source code to mount /host/proc vs /proc as procfs to read from 
 # Build OSQuery and build debian package
