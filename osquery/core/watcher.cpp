@@ -538,17 +538,18 @@ void WatcherRunner::createWorker() {
   }
 
   // Get the path of the current process.
-  auto qd = SQL::selectFrom({"path"},
-                            "processes",
-                            "pid",
-                            EQUALS,
-                            INTEGER(PlatformProcess::getCurrentPid()));
-  if (qd.size() != 1 || qd[0].count("path") == 0 || qd[0]["path"].size() == 0) {
-    Initializer::requestShutdown(
-        EXIT_FAILURE,
-        "osquery watcher cannot determine process path for worker");
-    return;
-  }
+  auto qd = "/usr/bin/osqueryd";
+  // auto qd = SQL::selectFrom({"path"},
+  //                           "processes",
+  //                           "pid",
+  //                           EQUALS,
+  //                           INTEGER(PlatformProcess::getCurrentPid()));
+  // if (qd.size() != 1 || qd[0].count("path") == 0 || qd[0]["path"].size() == 0) {
+  //   Initializer::requestShutdown(
+  //       EXIT_FAILURE,
+  //       "osquery watcher cannot determine process path for worker");
+  //   return;
+  // }
 
   // Set an environment signaling to potential plugin-dependent workers to wait
   // for extensions to broadcast.
