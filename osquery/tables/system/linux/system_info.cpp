@@ -68,7 +68,7 @@ QueryData genSystemInfo(QueryContext& context) {
 
   // Read the types from CPU info within proc.
   std::string content;
-  if (readFile("/proc/cpuinfo", content)) {
+  if (readFile("/host/proc/cpuinfo", content)) {
     for (const auto& line : osquery::split(content, "\n")) {
       // Iterate each line and look for labels (there is also a model type).
       if (line.find("model\t") == 0) {

@@ -26,7 +26,7 @@ const std::unordered_map<std::string, std::string> kIpv6ProcEntry = {
 
 inline std::string getIpv6Attr(const std::string& intf,
                                const std::string& attr) {
-  return "/proc/sys/net/ipv6/conf/" + intf + "/" + kIpv6ProcEntry.at(attr);
+  return "/host/proc/sys/net/ipv6/conf/" + intf + "/" + kIpv6ProcEntry.at(attr);
 }
 
 int getIpv6Config(const std::string& attr,

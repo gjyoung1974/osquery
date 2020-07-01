@@ -453,7 +453,7 @@ TEST_F(FilesystemTests, test_read_proc) {
   std::string content;
 
   if (isPlatform(PlatformType::TYPE_LINUX)) {
-    fs::path stat_path("/proc/" + std::to_string(platformGetPid()) + "/stat");
+    fs::path stat_path("/host/proc/" + std::to_string(platformGetPid()) + "/stat");
     EXPECT_TRUE(readFile(stat_path, content).ok());
     EXPECT_GT(content.size(), 0U);
   }

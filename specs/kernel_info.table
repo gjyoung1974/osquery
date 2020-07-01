@@ -9,6 +9,6 @@ schema([
 attributes(cacheable=True)
 implementation("system/kernel_info@genKernelInfo")
 fuzz_paths([
-    "/proc/cmdline",
-    "/proc/version",
+    "/host/proc/cmdline",
+    "/host/proc/version",
 ])

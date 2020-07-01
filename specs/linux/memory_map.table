@@ -7,5 +7,5 @@ schema([
 ])
 implementation("memory_map@genMemoryMap")
 fuzz_paths([
-    "/proc/iomem",
+    "/host/proc/iomem",
 ])

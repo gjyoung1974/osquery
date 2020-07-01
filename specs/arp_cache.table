@@ -8,5 +8,5 @@ schema([
 ])
 implementation("linux/arp_cache,darwin/routes@genArpCache")
 fuzz_paths([
-    "/proc/net/arp",
+    "/host/proc/net/arp",
 ])

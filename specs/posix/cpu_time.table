@@ -15,5 +15,5 @@ schema([
 ])
 implementation("cpu_time@genCpuTime")
 fuzz_paths([
-    "/proc/stat",
+    "/host/proc/stat",
 ])

@@ -15,5 +15,5 @@ schema([
 ])
 implementation("mounts@genMounts")
 fuzz_paths([
-    "/proc/mounts",
+    "/host/proc/mounts",
 ])

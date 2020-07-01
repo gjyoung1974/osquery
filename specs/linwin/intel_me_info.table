@@ -6,5 +6,5 @@ schema([
 
 implementation("intel_me_info@getIntelMEInfo")
 fuzz_paths([
-    "/proc/meminfo",
+    "/host/proc/meminfo",
 ])

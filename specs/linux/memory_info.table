@@ -14,5 +14,5 @@ schema([
 
 implementation("memory_info@getMemoryInfo")
 fuzz_paths([
-    "/proc/meminfo",
+    "/host/proc/meminfo",
 ])

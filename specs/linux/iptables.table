@@ -22,5 +22,5 @@ schema([
 ])
 implementation("iptables@genIptables")
 fuzz_paths([
-    "/proc/net/ip_tables_names",
+    "/host/proc/net/ip_tables_names",
 ])

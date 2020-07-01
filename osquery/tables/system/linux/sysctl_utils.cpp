@@ -21,7 +21,7 @@ namespace fs = boost::filesystem;
 namespace osquery {
 namespace tables {
 
-const std::string kSystemControlPath = "/proc/sys/";
+const std::string kSystemControlPath = "/host/proc/sys/";
 
 void genControlInfo(const std::string& mib_path,
                     QueryData& results,
@@ -90,7 +90,7 @@ void genAllControls(QueryData& results,
                     const std::string& subsystem) {
   // Linux sysctl subsystems are directories in /proc
   std::vector<std::string> subsystems;
-  if (!listDirectoriesInDirectory("/proc/sys", subsystems).ok()) {
+  if (!listDirectoriesInDirectory("/host/proc/sys", subsystems).ok()) {
     return;
   }
 

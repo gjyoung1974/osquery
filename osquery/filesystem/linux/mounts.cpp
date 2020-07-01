@@ -15,7 +15,7 @@
 
 namespace osquery {
 namespace {
-const std::string kMountsPseudoFile{"/proc/mounts"};
+const std::string kMountsPseudoFile{"/host/proc/mounts"};
 
 struct MountDataDeleter final {
   void operator()(FILE* ptr) {

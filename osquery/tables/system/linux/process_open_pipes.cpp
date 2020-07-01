@@ -61,7 +61,7 @@ int parseInode(const std::string& pipe_str) {
 std::string getMode(const std::string& pid, const std::string& fd) {
   std::string mode = "";
   struct stat file_stat;
-  std::string filename = std::string("/proc/") + pid + "/fd/" + fd;
+  std::string filename = std::string("/host/proc/") + pid + "/fd/" + fd;
   if (lstat(filename.c_str(), &file_stat)) {
     return "-";
   }

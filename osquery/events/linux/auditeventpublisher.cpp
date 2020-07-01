@@ -48,7 +48,7 @@ Status AuditEventPublisher::setUp() {
 
   if (executable_path_.empty()) {
     char buffer[PATH_MAX] = {};
-    assert(readlink("/proc/self/exe", buffer, sizeof(buffer)) != -1);
+    assert(readlink("/host/proc/self/exe", buffer, sizeof(buffer)) != -1);
     executable_path_ = buffer;
   }
 

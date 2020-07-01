@@ -33,7 +33,7 @@
 namespace osquery {
 namespace tables {
 
-const std::string kMDStatPath = "/proc/mdstat";
+const std::string kMDStatPath = "/host/proc/mdstat";
 
 /**
  * @brief Removes prefixing and suffixing character from each string in vector

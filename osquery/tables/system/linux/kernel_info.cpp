@@ -15,8 +15,8 @@
 namespace osquery {
 namespace tables {
 
-static const std::string kKernelArgumentsPath = "/proc/cmdline";
-static const std::string kKernelSignaturePath = "/proc/version";
+static const std::string kKernelArgumentsPath = "/host/proc/cmdline";
+static const std::string kKernelSignaturePath = "/host/proc/version";
 
 QueryData genKernelInfo(QueryContext& context) {
   QueryData results;

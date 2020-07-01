@@ -267,7 +267,7 @@ int workerMain(int argc, char* argv[]) {
   auto cmdline = std::array<char, 1024>();
   {
     const auto cmdline_file_path =
-        (boost::format("/proc/%d/cmdline") % parent_pid).str();
+        (boost::format("/host/proc/%d/cmdline") % parent_pid).str();
     std::ifstream cmdline_file(cmdline_file_path);
     cmdline_file.getline(cmdline.data(), 1024);
   }

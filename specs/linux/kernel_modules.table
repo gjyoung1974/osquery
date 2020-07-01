@@ -9,5 +9,5 @@ schema([
 ])
 implementation("kernel_modules@genKernelModules")
 fuzz_paths([
-    "/proc/modules",
+    "/host/proc/modules",
 ])

@@ -9,5 +9,5 @@ schema([
 ])
 implementation("networking/interface_ip@genInterfaceIpv6")
 fuzz_paths([
-    "/proc/sys/net/ipv6/conf",
+    "/host/proc/sys/net/ipv6/conf",
 ])

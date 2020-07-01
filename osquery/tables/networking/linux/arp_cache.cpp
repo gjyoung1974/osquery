@@ -18,7 +18,7 @@
 namespace osquery {
 namespace tables {
 
-const std::string kLinuxArpTable = "/proc/net/arp";
+const std::string kLinuxArpTable = "/host/proc/net/arp";
 
 QueryData genArpCache(QueryContext& context) {
   QueryData results;

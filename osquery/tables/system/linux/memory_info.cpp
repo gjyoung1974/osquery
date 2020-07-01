@@ -19,7 +19,7 @@
 namespace osquery {
 namespace tables {
 
-const std::string kMemInfoPath = {"/proc/meminfo"};
+const std::string kMemInfoPath = {"/host/proc/meminfo"};
 
 const std::map<std::string, std::string> kMemInfoMap = {
     {"memory_total", "MemTotal:"},

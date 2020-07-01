@@ -37,7 +37,7 @@ const int kMSIn1CLKTCK = (1000 / sysconf(_SC_CLK_TCK));
 
 inline std::string getProcAttr(const std::string& attr,
                                const std::string& pid) {
-  return "/proc/" + pid + "/" + attr;
+  return "/host/proc/" + pid + "/" + attr;
 }
 
 inline std::string readProcCMDLine(const std::string& pid) {
@@ -125,7 +125,7 @@ std::set<std::string> getProcList(const QueryContext& context) {
   if (context.constraints.count("pid") > 0 &&
       context.constraints.at("pid").exists(EQUALS)) {
     for (const auto& pid : context.constraints.at("pid").getAll(EQUALS)) {
-      if (isDirectory("/proc/" + pid)) {
+      if (isDirectory("/host/proc/" + pid)) {
         pidlist.insert(pid);
       }
     }
