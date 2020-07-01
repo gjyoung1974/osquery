@@ -3,4 +3,3 @@ steps:
   args: [ 'build', '-t', 'gcr.io/pm-registry/osquery-build-deb', '.' ]
 images:
 - 'gcr.io/pm-registry/osquery-build-deb'
-
