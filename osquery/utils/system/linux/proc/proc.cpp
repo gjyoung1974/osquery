@@ -23,7 +23,7 @@ namespace fs = boost::filesystem;
 namespace {
 
 inline fs::path attrPath(const std::string& pid, char const* attr) {
-  auto attr_path = fs::path("/proc");
+  auto attr_path = fs::path("/host/proc");
   attr_path /= pid;
   attr_path /= attr;
   return attr_path;

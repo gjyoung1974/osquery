@@ -40,7 +40,7 @@ CLI_FLAG(bool,
 
 namespace {
 
-const std::string kProc = "/proc";
+const std::string kProc = "/host/proc";
 const std::string kMountNamespace = "/ns/mnt";
 
 /*

@@ -187,7 +187,7 @@ Examples:
   }
 ```
 
-`processes` optionally uses a predicate. A syscall to list process pids requires few resources. Enumerating "/proc" information and parsing environment/argument uses MANY resources. The table implementation includes:
+`processes` optionally uses a predicate. A syscall to list process pids requires few resources. Enumerating "/host/proc" information and parsing environment/argument uses MANY resources. The table implementation includes:
 
 ```cpp
   for (auto &pid : pidlist) {

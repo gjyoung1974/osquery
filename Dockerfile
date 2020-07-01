@@ -40,4 +40,6 @@ RUN cd osquery  \
 
 # hold the container open
 CMD ["tail", "-f", "/dev/null"]
+
+# Deb file output will be at:
 # /osquery/build/osquery_4.4.0-3-g8636dca-1.linux_amd64.deb
