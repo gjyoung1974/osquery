@@ -540,12 +540,24 @@ void WatcherRunner::createWorker() {
 
   //TODO: Gordon Changed this:
   // Get the path of the current process.
-  //string qd = "/usr/bin/osqueryd";
-  auto qd = SQL::selectFrom({"path"},
-                            "processes",
-                            "pid",
-                            EQUALS,
-                            INTEGER(PlatformProcess::getCurrentPid()));
+
+  QueryData generateQD() override {
+    QueryData results;
+    Row r;
+
+    r["path"] = "/usr/bin/osqueryd";
+    results.push_back(r);
+    return results;
+  }
+
+  QueryData qd = generateQD();
+
+  // auto qd = SQL::selectFrom({"path"},
+  //                           "processes",
+  //                           "pid",
+  //                           EQUALS,
+  //                           INTEGER(PlatformProcess::getCurrentPid()));
+
   if (qd.size() != 1 || qd[0].count("path") == 0 || qd[0]["path"].size() == 0) {
     Initializer::requestShutdown(
         EXIT_FAILURE,
