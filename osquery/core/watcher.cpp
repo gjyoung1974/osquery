@@ -556,7 +556,8 @@ void WatcherRunner::createWorker() {
                             "pid",
                             EQUALS,
                             INTEGER(PlatformProcess::getCurrentPid()));
-
+                            
+  //TODO: Gordon Changed this:
   // if (qd.size() != 1 || qd[0].count("path") == 0 || qd[0]["path"].size() == 0) {
   //   Initializer::requestShutdown(
   //       EXIT_FAILURE,
