@@ -540,18 +540,18 @@ void WatcherRunner::createWorker() {
 
   //TODO: Gordon Changed this:
   // Get the path of the current process.
-  string qd = "/usr/bin/osqueryd";
-  // auto qd = SQL::selectFrom({"path"},
-  //                           "processes",
-  //                           "pid",
-  //                           EQUALS,
-  //                           INTEGER(PlatformProcess::getCurrentPid()));
-  // if (qd.size() != 1 || qd[0].count("path") == 0 || qd[0]["path"].size() == 0) {
-  //   Initializer::requestShutdown(
-  //       EXIT_FAILURE,
-  //       "osquery watcher cannot determine process path for worker");
-  //   return;
-  // }
+  //string qd = "/usr/bin/osqueryd";
+  auto qd = SQL::selectFrom({"path"},
+                            "processes",
+                            "pid",
+                            EQUALS,
+                            INTEGER(PlatformProcess::getCurrentPid()));
+  if (qd.size() != 1 || qd[0].count("path") == 0 || qd[0]["path"].size() == 0) {
+    Initializer::requestShutdown(
+        EXIT_FAILURE,
+        "osquery watcher cannot determine process path for worker");
+    return;
+  }
 
   // Set an environment signaling to potential plugin-dependent workers to wait
   // for extensions to broadcast.
@@ -561,12 +561,12 @@ void WatcherRunner::createWorker() {
 
   // Get the complete path of the osquery process binary.
   boost::system::error_code ec;
-  string exec_path = "/usr/bin/osqueryd";
-  // auto exec_path = fs::system_complete(fs::path(qd[0]["path"]), ec);
-  // // if (!pathExists(exec_path).ok()) {
-  // //   LOG(WARNING) << "osqueryd doesn't exist in: " << exec_path.string();
-  // //   return;
-  // // }
+  // string exec_path = "/usr/bin/osqueryd";
+  auto exec_path = fs::system_complete(fs::path(qd[0]["path"]), ec);
+  if (!pathExists(exec_path).ok()) {
+    LOG(WARNING) << "osqueryd doesn't exist in: " << exec_path.string();
+    return;
+  }
   if (!safePermissions(
           exec_path.parent_path().string(), exec_path.string(), true)) {
     // osqueryd binary has become unsafe.
