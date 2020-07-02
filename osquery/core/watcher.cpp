@@ -540,7 +540,6 @@ void WatcherRunner::createWorker() {
 
   //TODO: Gordon Changed this:
   // Get the path of the current process.
-
   QueryData generateQD() override {
     QueryData results;
     Row r;
