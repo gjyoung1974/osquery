@@ -538,6 +538,7 @@ void WatcherRunner::createWorker() {
     }
   }
 
+  //TODO: Gordon Changed this:
   // Get the path of the current process.
   string qd = "/usr/bin/osqueryd";
   // auto qd = SQL::selectFrom({"path"},
