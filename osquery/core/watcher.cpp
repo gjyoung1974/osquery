@@ -540,14 +540,14 @@ void WatcherRunner::createWorker() {
 
   //TODO: Gordon Changed this:
   // Get the path of the current process.
-  // QueryData generateQD() override {
-  //   QueryData results;
-  //   Row r;
+  QueryData generateQD() override {
+    QueryData results;
+    Row r;
 
-  //   r["path"] = "/usr/bin/osqueryd";
-  //   results.push_back(r);
-  //   return results;
-  // }
+    r["path"] = "/usr/bin/osqueryd";
+    results.push_back(r);
+    return results;
+  }
 
   // auto qd = generateQD();
 
@@ -570,22 +570,20 @@ void WatcherRunner::createWorker() {
     setEnvVar("OSQUERY_EXTENSIONS", "true");
   }
 
-  // // Get the complete path of the osquery process binary.
-  // boost::system::error_code ec;
-  // // string exec_path = "/usr/bin/osqueryd";
-  // auto exec_path = fs::system_complete(fs::path(qd[0]["path"]), ec);
-  // if (!pathExists(exec_path).ok()) {
-  //   LOG(WARNING) << "osqueryd doesn't exist in: " << exec_path.string();
-  //   return;
-  // }
-
-
+  // Get the complete path of the osquery process binary.
+  boost::system::error_code ec;
+  // string exec_path = "/usr/bin/osqueryd";
+  auto exec_path = fs::system_complete(fs::path(qd[0]["path"]), ec);
+  if (!pathExists(exec_path).ok()) {
+    LOG(WARNING) << "osqueryd doesn't exist in: " << exec_path.string();
+    return;
+  }
   if (!safePermissions(
           exec_path.parent_path().string(), exec_path.string(), true)) {
     // osqueryd binary has become unsafe.
     auto message = std::string(RLOG(1382)) +
                    "osqueryd has unsafe permissions: " + exec_path.string();
-    Initializer::requestShutdown(EXIT_FAILURE, message);
+    // Initializer::requestShutdown(EXIT_FAILURE, message);
     return;
   }
 
@@ -593,7 +591,7 @@ void WatcherRunner::createWorker() {
   if (worker == nullptr) {
     // Unrecoverable error, cannot create a worker process.
     LOG(ERROR) << "osqueryd could not create a worker process";
-    Initializer::shutdownNow(EXIT_FAILURE);
+    // Initializer::shutdownNow(EXIT_FAILURE);
     return;
   }
 
