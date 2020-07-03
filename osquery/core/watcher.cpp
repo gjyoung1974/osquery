@@ -32,6 +32,8 @@
 #include <osquery/utils/info/tool_type.h>
 #include <osquery/utils/system/time.h>
 
+//TODO: gordon RM'd the forced exit on failure
+
 namespace fs = boost::filesystem;
 
 namespace osquery {
