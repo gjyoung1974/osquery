@@ -1,6 +1,10 @@
 # osquery
 ## customized image
 
+load a custom extention via osqueryi
+
+osqueryi --extension <path to extention>
+
 <p align="center">
 <img alt="osquery logo" width="200"
 src="https://github.com/facebook/osquery/raw/master/docs/img/logo-2x-dark.png" />

@@ -8,7 +8,6 @@
 
 #include <chrono>
 #include <cstring>
-#include <string>
 
 #include <math.h>
 #include <signal.h>
@@ -224,7 +223,7 @@ void WatcherRunner::start() {
       if (watcher.workerRestartCount() ==
           getWorkerLimit(WatchdogLimitType::RESPAWN_LIMIT)) {
         // Too many worker restarts.
-        Initializer::requestShutdown(EXIT_FAILURE, "Too many worker restarts");
+        // Initializer::requestShutdown(EXIT_FAILURE, "Too many worker restarts");
         break;
       }
 
@@ -538,32 +537,18 @@ void WatcherRunner::createWorker() {
     }
   }
 
-  //TODO: Gordon Changed this:
   // Get the path of the current process.
-  QueryData generateQD() override {
-    QueryData results;
-    Row r;
-
-    r["path"] = "/usr/bin/osqueryd";
-    results.push_back(r);
-    return results;
-  }
-
-  // auto qd = generateQD();
-
   auto qd = SQL::selectFrom({"path"},
                             "processes",
                             "pid",
                             EQUALS,
                             INTEGER(PlatformProcess::getCurrentPid()));
-                            
-  //TODO: Gordon Changed this:
-  // if (qd.size() != 1 || qd[0].count("path") == 0 || qd[0]["path"].size() == 0) {
-  //   Initializer::requestShutdown(
-  //       EXIT_FAILURE,
-  //       "osquery watcher cannot determine process path for worker");
-  //   return;
-  // }
+  if (qd.size() != 1 || qd[0].count("path") == 0 || qd[0]["path"].size() == 0) {
+    // Initializer::requestShutdown(
+    //     EXIT_FAILURE,
+    //     "osquery watcher cannot determine process path for worker");
+    return;
+  }
 
   // Set an environment signaling to potential plugin-dependent workers to wait
   // for extensions to broadcast.
@@ -573,7 +558,6 @@ void WatcherRunner::createWorker() {
 
   // Get the complete path of the osquery process binary.
   boost::system::error_code ec;
-  // string exec_path = "/usr/bin/osqueryd";
   auto exec_path = fs::system_complete(fs::path(qd[0]["path"]), ec);
   if (!pathExists(exec_path).ok()) {
     LOG(WARNING) << "osqueryd doesn't exist in: " << exec_path.string();
@@ -639,7 +623,7 @@ void WatcherRunner::createExtension(const std::string& extension) {
   if (ext_process == nullptr) {
     // Unrecoverable error, cannot create an extension process.
     LOG(ERROR) << "Cannot create extension process: " << extension;
-    Initializer::shutdownNow(EXIT_FAILURE);
+    // Initializer::shutdownNow(EXIT_FAILURE);
   }
 
   watcher.setExtension(extension, ext_process);
